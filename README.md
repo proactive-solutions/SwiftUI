@@ -1,6 +1,6 @@
 <img src="images/icon/banner.png"/>
 
-[![Build Status](https://img.shields.io/badge/platforms-iOS%20%7C%20tvOS%20%7C%20macOS%20%7C%20watchOS-lightgrey.svg)](https://github.com/Jinxiansen/SwiftUI)
+[![Build Status](https://img.shields.io/badge/platforms-iOS%20%7C%20tvOS%20%7C%20macOS%20%7C%20watchOS-green.svg)](https://github.com/Jinxiansen/SwiftUI)
 [![Swift](https://img.shields.io/badge/Swift-5.1-orange.svg)](https://swift.org)
 [![Xcode](https://img.shields.io/badge/Xcode-11.0-blue.svg)](https://developer.apple.com/xcode)
 [![Xcode](https://img.shields.io/badge/macOS-15.0-blue.svg)](https://developer.apple.com/macOS)
@@ -76,10 +76,11 @@ When learning and using `SwiftUI`, if you have any questions, you can join the S
 	- [Group](#Group)
 	- [GroupBox](#GroupBox)
 	- [Section](#Section)
+  - [Form](#Form)
 
 * <span id="Architectural_D">Architectural Views</span>
 	- [NavigationView](#NavigationView)
-	- [TabbedView](#TabbedView)
+	- [TabView](#TabView)
 	- [HSplitView](#HSplitView)
 	- [VSplitView](#VSplitView)
 
@@ -686,6 +687,24 @@ Section(header: Text("I'm header"), footer: Text("I'm footer")) {
 <img width="80%" src="images/example/Section.png"/>
 </details>
 
+<h4 id="Form"> Form </h4>
+
+`Form` A container for grouping controls used for data entry, such as in settings or inspectors.
+
+Example:
+
+```swift
+Form {
+   TextField("First Name", text: $firstName)
+   TextField("Last Name", text: $lastName)
+}
+```
+
+<details close>
+  <summary>View running results</summary>
+<img width="80%" src="images/example/Form.png"/>
+</details>
+
 [🔝](#Layout_D)
  
 <h4 id="NavigationView"> NavigationView </h4>
@@ -712,25 +731,28 @@ NavigationView {
 
 [🔝](#Layout_D)
 
-<h4 id="TabBar"> TabBar </h4>
+<h4 id="TabView"> TabView </h4>
 
-`TabBar` is used to create a view container that contains the bottom **TabBar**.
+`TabView` is used to create a view container that contains the bottom ** TabBar**.
 
 Example:
 
 ```swift
-TabbedView(selection: $index) {
-    ForEach(0 ..< imgs.count) { item in
+TabView(selection: $index) {
+    ForEach(0..<imgs.count) { item in
         TabItemPage(index: item)
-            .tabItemLabel(Image(self.imgs[item]))
-            .tag(item)
+            .tabItem{
+                Image(self.imgs[item])
+                Text("\(item)")
+        }
+        .tag(item)
     }
 }
 ```
 
 <details close>
   <summary>View running results</summary>
-<img width="80%" src="images/example/TabBar.png"/>
+<img width="80%" src="images/example/TabView.png"/>
 </details>
 
 [🔝](#Layout_D)
